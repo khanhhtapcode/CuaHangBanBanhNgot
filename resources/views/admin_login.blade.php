@@ -33,12 +33,25 @@
     <div class="log-w3">
         <div class="w3layouts-main">
             <h2>Đăng nhập</h2>
-            <form action="{{ route('login') }}" method="POST">
-                @csrf
-                <input type="email" class="ggg" name="Email" placeholder="E-MAIL" required="">
-                <input type="password" class="ggg" name="Password" placeholder="MẬT KHẨU" required="">
+            <!-- khia bao bien message kiem tra xem ten dang nhapj hoac mat khau dung khong -->
+            <?php
+            use Illuminate\Support\Facades\Session;
+            $message = Session::get('canh_bao');
+            if ($message) {
+                Session::put('canh_bao', null);
+                echo '<span class="text-alert">' . $message . '</span>';
+            }
+            ?>
+            <form action="{{ route('admin.truycap_dashboard') }}" method="POST">
+                <!-- sinh truong token de tranh sql injection -->
+                {{ csrf_field() }}
+                <input type="email" class="ggg" name="admin_email" placeholder="E-MAIL" required="">
+                <input type="password" class="ggg" name="admin_password" placeholder="MẬT KHẨU" required="">
+
+
                 <span><input type="checkbox" />Lưu mật khẩu</span>
                 <h6><a href="#">Quên mật khẩu?</a></h6>
+
                 <div class="clearfix"></div>
                 <input type="submit" value="Đăng nhập" name="login">
             </form>

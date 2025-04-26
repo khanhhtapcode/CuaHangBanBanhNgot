@@ -67,13 +67,20 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
                     <li class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="">
                             <img alt="" src="images/2.png">
-                            <span class="username">Nguyễn Văn A</span>
+                            <span class="username">
+                                <!-- khia bao bien message kiem tra xem ten dang nhapj hoac mat khau dung khong -->
+                                <?php
+                                use Illuminate\Support\Facades\Session;
+                                $name = Session::get('admin_name');
+                                echo $name;
+                                ?>
+                            </span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
                             <li><a href="#"><i class=" fa fa-suitcase"></i>Hồ sơ</a></li>
                             <li><a href="#"><i class="fa fa-cog"></i> Cài đặt</a></li>
-                            <li><a href="login.html"><i class="fa fa-key"></i> Đăng xuất</a></li>
+                            <li><a href="{{route("admin.dangxuat") }}"><i class="fa fa-key"></i> Đăng xuất</a></li>
                         </ul>
                     </li>
                     <!-- user login dropdown end -->
@@ -109,13 +116,18 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
 
                     </ul>
                 </div>
+
                 <!-- sidebar menu end-->
             </div>
         </aside>
         <!--sidebar end-->
         <!--main content start-->
         <section id="main-content">
-            <h1>Chào mừng đến với Admin</h1>
+            <!-- goi section  trong dashboard_blade -->
+            <h1>Mai Thai Huy</h1>
+
+            <h1>mai thai huy</h1>
+            @yield('admin_content')
             <!-- footer -->
             <div class="footer">
                 <div class="wthree-copyright">
@@ -262,4 +274,3 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
 </body>
 
 </html>
-```

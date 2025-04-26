@@ -15,8 +15,9 @@ Route::get('/trang-chu', function () {
 // backend
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 Route::get('/dashboard', action: [AdminController::class, 'show_dashboard'])->name('admin.show_dashboard');
-
-
+Route::post('/admin-dashboard', [AdminController::class, 'truycap_dashboard'])->name('admin.truycap_dashboard'); // phuong thuc post lay du lieu tu form va xu li
+Route::get('/dangxuat', action: [AdminController::class, 'dangxuat'])->name('admin.dangxuat');
+ 
 
 
 
