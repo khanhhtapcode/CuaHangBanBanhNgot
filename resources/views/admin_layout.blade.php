@@ -33,6 +33,7 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
     <link rel="stylesheet" href="{{ url('public/backend/css/font.css') }}" type="text/css" />
     <link href="{{ url('public/backend/css/font-awesome.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ url('public/backend/css/morris.css') }}" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- calendar -->
     <link rel="stylesheet" href="{{ url('public/backend/css/monthly.css') }}">
     <!-- //calendar -->

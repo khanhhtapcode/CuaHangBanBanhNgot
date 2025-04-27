@@ -27,6 +27,16 @@
             </div>
         </div>
         <div class="table-responsive">
+            <?php
+
+            use Illuminate\Support\Facades\Session;
+
+            $thongbao = Session::get('thongbao');
+            if ($thongbao) {
+                echo '<span style="color: red; font-size: 20px;">' . $thongbao . '</span>';
+                Session::put('thongbao', null); // Xóa thông báo sau khi hiển thị
+            }
+            ?>
             <table class="table table-striped b-t b-light">
                 <thead>
                     <tr>
@@ -37,27 +47,46 @@
                         </th>
                         <th>Tên danh mục</th>
                         <th>Hiển thị</th>
-                        <th>Ngày thêm danh mục</th>
+                        <th>Hành động</th>
                         <th style="width:30px;"></th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($list_category_product as $key => $category_product)
                     <tr>
                         <td><label class="i-checks m-b-none"><input type="checkbox"
                                     name="post[]"><i></i></label></td>
-                        <td>Idrawfast prototype design prototype design prototype design prototype
-                            design prototype design</td>
-                        <td><span class="text-ellipsis">Ẩn/Hiển Thị</span></td>
-                        <td><span class="text-ellipsis">27.4.2025</span></td>
+                        <td>{{ $category_product->category_name }}</td>
+                        <td><span class="text-ellipsis">
+                                <?php
+                                if ($category_product->category_status == 0) {
+                                    echo 'Ẩn';
+                                ?>
+
+                                    <a href="{{ route('admin.an_danhmuc', ['category_product_id' => $category_product->category_id]) }}"><span class="fa-styling fa fa-thumbs-down"></span></a>
+
+                                <?php
+                                } else {
+                                    echo 'Hiện';
+                                ?>
+
+                                    <a href="{{ route('admin.hien_danhmuc', ['category_product_id' => $category_product->category_id]) }}"><span class="fa-styling fa fa-thumbs-up"></span></a>
+
+                                <?php
+                                }
+                                ?>
+                            </span></td>
                         <td>
                             <a href="" class="active" ui-toggle-class=""><i
                                     class="fa fa-pencil-square-o text-active"></i><i
                                     class="fa fa-times text-danger text"></i></a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
+
         <footer class="panel-footer">
             <div class="row">
 
