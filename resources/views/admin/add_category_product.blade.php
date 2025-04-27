@@ -9,7 +9,9 @@
                 Thêm danh mục sản phẩm
             </header>
             <?php
+
             use Illuminate\Support\Facades\Session;
+
             $thongbao = Session::get('thongbao');
             if ($thongbao) {
                 echo '<span style="color: red; font-size: 20px;">' . $thongbao . '</span>';
@@ -18,20 +20,20 @@
             ?>
             <div class="panel-body">
                 <div class="position-center">
-                    <form role="form" method="post" action="{{ route("admin.list_category_product") }}">
+                    <form role="form" method="post" action="{{ route('admin.luu_danhmuc_sanpham') }}">
                         <div class="form-group">
-                           {{ csrf_field() }} 
+                            {{ csrf_field() }}
                             <label for="exampleInputEmail1">Tên danh mục</label>
                             <input type="text" name="category_product_name" class="form-control" id="exampleInputEmail1" placeholder="Tên danh mục sản phẩm" required>
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Mô tả</label>
-                            <textarea style="resize: none" rows = "9" cols="125" name="category_product_des" id="exampleInputPassword1" placeholder="mô tả"></textarea>
+                            <textarea style="resize: none" rows="9" cols="125" name="category_product_desc" id="exampleInputPassword1" placeholder="mô tả"></textarea>
                         </div>
                         <div class="form-group">
                             <select class="form-control m-bot15" name="category_product_status" id="exampleInputFile">
-                                <label for="exampleInputFile">Hiển hị</label>
-                                <option value=0>Ẩn</option>  <!--value 0,1 tuong trung cho an va hien kieu int trong category_product_status -->
+                                <label for="exampleInputFile">Hiển thị</label>
+                                <option value=0>Ẩn</option> <!--value 0,1 tuong trung cho an va hien kieu int trong category_product_status -->
                                 <option value=1>Hiển thị</option>
                             </select>
                         </div>

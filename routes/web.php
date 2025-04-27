@@ -27,11 +27,63 @@ Route::get('/dangxuat', action: [AdminController::class, 'dangxuat'])->name('adm
  //Danh muc san pham(category)
 // Hiển thị form thêm danh mục
 Route::get('/them-danhmuc', [CategoryProduct::class, 'them_danhmuc'])->name('admin.add_category_product');
-
 // Hiển thị danh sách danh mục
 Route::get('/lietke-danhmuc', [CategoryProduct::class, 'lietke_danhmuc'])->name('admin.list_category_product');
 // Xử lý thêm danh mục
-Route::post('/luu_danhmuc_sanpham', [AdminController::class, 'luu_danhmuc_sanpham'])->name('admin.luu_danhmuc_sanpham');
+Route::post('/luu-danhmuc-sanpham', [CategoryProduct::class, 'luu_danhmuc_sanpham'])->name('admin.luu_danhmuc_sanpham');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::middleware(['auth'])->group(function () {

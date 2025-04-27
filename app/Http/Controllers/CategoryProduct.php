@@ -21,11 +21,10 @@ class CategoryProduct extends Controller
     {
         $data = array();
         $data['category_name'] = $request->category_product_name;
-        $data['category_des'] = $request->category_product_des;
+        $data['category_desc'] = $request->category_product_desc;
         $data['category_status'] = $request->category_product_status;
         DB::table('tbl_category_product')->insert($data);
         Session::put('thongbao', 'Thêm danh mục sản phẩm thành công');
-        return Redirect::to('/lietke-danhmuc');
-    }
-    
+        return Redirect::route('admin.add_category_product');
+    } 
 }
