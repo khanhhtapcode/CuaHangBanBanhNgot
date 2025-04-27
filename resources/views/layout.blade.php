@@ -58,8 +58,8 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="logo pull-left">
-                            <a href="{{ url('/trang-chu') }}">
-                                <img src="{{ asset('public/frontend/images/home/logo.png') }}" alt="Quang Béo Cakes" />
+                            <a href="{{ route('home') }}">
+                                <img src="{{ asset('public/frontend/images/logo.png') }}" alt="Quang Béo Cakes" />
                             </a>
 
                         </div>
