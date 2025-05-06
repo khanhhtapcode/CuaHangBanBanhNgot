@@ -110,7 +110,18 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ route("admin.add_category_product") }}">Thêm danh mục sản phẩn</a></li>
-                                <li><a href="{{ route("admin.list_category_product") }}">Liệt kê danh mục sản phẩm</a></li>
+                                <li><a href="{{ route("admin.list_category_product") }}">Danh sách danh mục sản phẩm</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-book"></i>
+                                <span>Danh mục thương hiệu sản phẩm</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ route("admin.add_brand_product") }}">Thêm thương hiệu sản phẩn</a></li>
+                                <li><a href="{{ route("admin.list_brand_product") }}">Danh sách thương hiệu sản phẩm</a></li>
 
                             </ul>
                         </li>

@@ -3,7 +3,7 @@
 <div class="table-agile-info">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Các danh mục sản phẩm
+            Các thương hiệu sản phẩm
         </div>
         <div class="row w3-res-tb">
             <div class="col-sm-5 m-b-xs">
@@ -22,7 +22,7 @@
                 <div class="input-group">
                     <input type="text" class="input-sm form-control" placeholder="Search">
                     <span class="input-group-btn">
-                        <button class="btn btn-sm btn-default" type="button">Go!</button>
+                        <button class="btn btn-sm btn-default" type="button">Tìm kiếm</button>
                     </span>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                 <input type="checkbox"><i></i>
                             </label>
                         </th>
-                        <th>Tên danh mục</th>
+                        <th>Tên thương hiệu</th>
                         <th>Hiển thị</th>
                         <th>Mô tả</th>
                         <th>Hành động</th>
@@ -54,35 +54,34 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($list_category_product as $key => $category_product)
+                    @foreach ($list_brand_product as $key => $brand)
                     <tr>
                         <td><label class="i-checks m-b-none"><input type="checkbox"
                                     name="post[]"><i></i></label></td>
-                        <td>{{ $category_product->category_name }}</td>
+                        <td>{{ $brand->brand_name }}</td>
                         <td><span class="text-ellipsis">
                                 <?php
-                                if ($category_product->category_status == 0) {
+                                if ($brand->brand_status == 0) {
                                     echo 'Ẩn';
                                 ?>
 
-                                    <a href="{{ route('admin.an_danhmuc', ['category_product_id' => $category_product->category_id]) }}"><span class="fa-styling fa fa-thumbs-down"></span></a>
+                                    <a href="{{ route('admin.an_thuonghieu', ['brand_id' => $brand->brand_id]) }}"><span class="fa-styling fa fa-thumbs-down"></span></a>
 
                                 <?php
                                 } else {
                                     echo 'Hiện';
                                 ?>
-
-                                    <a href="{{ route('admin.hien_danhmuc', ['category_product_id' => $category_product->category_id]) }}"><span class="fa-styling fa fa-thumbs-up"></span></a>
+                                    <a href="{{ route('admin.hien_thuonghieu', ['brand_id' => $brand->brand_id]) }}"><span class="fa-styling fa fa-thumbs-up"></span></a>
 
                                 <?php
                                 }
                                 ?>
                             </span></td>
-                        <td>{{ $category_product->category_desc }}</td>
+                        <td>{{ $brand->brand_desc }}</td>
                         <td>
-                            <a href="{{ route('admin.sua_danhmuc', ['category_product_id' => $category_product->category_id]) }}" class="active" ui-toggle-class="">
+                            <a href="{{ route('admin.sua_thuonghieu', ['brand_id' => $brand->brand_id]) }}" class="active" ui-toggle-class="">
                                 <i class="fa fa-pencil-square-o text-active"></i></a>
-                            <a  href="{{ route('admin.xoa_danhmuc', ['category_product_id' => $category_product->category_id]) }}"  onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này không?')" class="active" ui-toggle-class="">
+                            <a  href="{{ route('admin.xoa_thuonghieu', ['brand_id' => $brand->brand_id]) }}"  onclick="return confirm('Bạn có chắc chắn muốn xóa thương hiệu này không?')" class="active" ui-toggle-class="">
                                 <i class="fa fa-times text-danger text"></i></a>
                         </td>
                     </tr>

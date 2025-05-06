@@ -44,4 +44,26 @@ class CategoryProduct extends Controller
         Session::put('thongbao', 'Hiện danh mục sản phẩm thành công');
         return Redirect::route('admin.list_category_product');
     }
+    public function sua_danhmuc($category_product_id){
+        // lấy thông tin danh mục sản phẩm
+        $sua_danhmuc = DB::table('tbl_category_product')->where('category_id', $category_product_id)->get();
+        return view('admin.edit_category_product')->with('edit_category_product', $sua_danhmuc);
+        //
+    }
+    public function luucapnhat_danhmuc(Request $request, $category_product_id)
+    {
+        $data = array();
+        $data['category_name'] = $request->category_product_name;
+        $data['category_desc'] = $request->category_product_desc;
+        DB::table('tbl_category_product')->where('category_id', $category_product_id)->update($data);
+        Session::put('thongbao', 'Sửa danh mục sản phẩm thành công');
+        return Redirect::route('admin.list_category_product');
+    }
+    public function xoa_danhmuc(Request $request, $category_product_id)
+    {
+        $data = array();
+        DB::table('tbl_category_product')->where('category_id', $category_product_id)->delete();
+        Session::put('thongbao', 'Xóa danh mục sản phẩm thành công');
+        return Redirect::route('admin.list_category_product');
+    }
 }
