@@ -71,7 +71,9 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
                             <span class="username">
                                 <!-- khia bao bien message kiem tra xem ten dang nhapj hoac mat khau dung khong -->
                                 <?php
+
                                 use Illuminate\Support\Facades\Session;
+
                                 $name = Session::get('admin_name');
                                 echo $name;
                                 ?>
@@ -98,14 +100,14 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
                     <ul class="sidebar-menu" id="nav-accordion">
                         <li>
                             <a class="active" href="{{ URL::to('/dashboard') }}">
-                                <i class="fa fa-dashboard"></i>
+                                <i class="fa fa-tachometer-alt"></i>
                                 <span>Tổng quan</span>
                             </a>
                         </li>
 
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-th-list"></i>
                                 <span>Danh mục sản phẩm</span>
                             </a>
                             <ul class="sub">
@@ -116,12 +118,24 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
                         </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
-                                <i class="fa fa-book"></i>
+                                <i class="fa fa-tags"></i>
                                 <span>Danh mục thương hiệu sản phẩm</span>
                             </a>
                             <ul class="sub">
                                 <li><a href="{{ route("admin.add_brand_product") }}">Thêm thương hiệu sản phẩn</a></li>
                                 <li><a href="{{ route("admin.list_brand_product") }}">Danh sách thương hiệu sản phẩm</a></li>
+
+                            </ul>
+                        </li>
+
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-box-open"></i>
+                                <span>Sản phẩm</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ route("admin.add_product") }}">Thêm sản phẩn</a></li>
+                                <li><a href="{{ route("admin.list_product") }}">Danh sách sản phẩm</a></li>
 
                             </ul>
                         </li>

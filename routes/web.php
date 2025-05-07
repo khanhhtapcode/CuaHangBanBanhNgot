@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandProduct;
 use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 
 // fronend
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -69,6 +70,22 @@ Route::post('/luu-capnhat-thuonghieu/{brand_id}', [BrandProduct::class, 'luucapn
 // Xử lý xóa danh mục
 Route::get('/xoa-thuonghieu/{brand_id}', [BrandProduct::class, 'xoa_thuonghieu'])->name('admin.xoa_thuonghieu');
 
+//sản phẩm
+// Hiển thị form thêm danh mục
+Route::get('/them-sanpham', [ProductController::class, 'them_sanpham'])->name('admin.add_product');
+// Hiển thị danh sách danh mục
+Route::get('/lietke-sanpham', [ProductController::class, 'lietke_sanpham'])->name('admin.list_product');
+// Xử lý thêm danh mục
+Route::post('/luu-sanpham', [ProductController::class, 'luu_sanpham'])->name('admin.luu_sanpham');
+// Xử lý ẩn/hiện
+Route::get('/an-sanpham/{product_id}', [ProductController::class, 'an_sanpham'])->name('admin.an_sanpham');
+Route::get('/hien-sanpham/{product_id}', [ProductController::class, 'hien_sanpham'])->name('admin.hien_sanpham');
+// / Xử lý sửa danh mục
+//Route::get('/sua-danhmuc/{category_product_id}', [CategoryProduct::class, 'luucapnhat_danhmuc'])->name('admin.luucapnhat_danhmuc');
+Route::get('/sua-sanpham/{product_id}', [ProductController::class, 'sua_sanpham'])->name('admin.sua_sanpham');
+Route::post('/luu-capnhat-sanpham/{product_id}', [ProductController::class, 'luucapnhat_sanpham'])->name('admin.luucapnhat_sanpham');
+// Xử lý xóa danh mục
+Route::get('/xoa-sanpham/{product_id}', [ProductController::class, 'xoa_sanpham'])->name('admin.xoa_sanpham');
 
 
 
