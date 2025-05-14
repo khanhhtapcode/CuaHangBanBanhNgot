@@ -10,7 +10,7 @@ use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 
-// fronend
+// frontend
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::view('dashboard', 'HomeController@index');
@@ -26,7 +26,10 @@ Route::get('/admin/login', function () {
     return view('admin_login');
 })->name('admin_login');
 
-
+// trang chu danh muc san pham
+Route::get('/loc-danh-muc-san-pham/{category_product_id}', action: [CategoryProduct::class, 'show_category_home'])->name('admin.show_category_home');
+// trang chu thuong hieu san pham
+Route::get('/loc-thuong-hieu-san-pham/{brand_id}', action: [BrandProduct::class, 'show_brand_home'])->name('admin.show_brand_home');
 
 
 // backend

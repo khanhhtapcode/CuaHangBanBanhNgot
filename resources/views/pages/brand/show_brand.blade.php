@@ -4,8 +4,9 @@
     <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
         <i class="fa fa-angle-left"></i>
     </a>
-    <h2 class="title text-center">Sản phẩm nổi bật</h2>
-    
+    @foreach ($brand_name as $key => $br_name)
+    <h2 class="title text-center">{{ $br_name->brand_name}}</h2>
+    @endforeach
     @foreach ($product as $key => $pro)
     <div class="col-sm-4">
         <div class="product-image-wrapper">
@@ -15,13 +16,6 @@
                     <h2>{{number_format ($pro->product_price)." "."VNĐ" }}</h2>
                     <p>{{ $pro->product_name }}</p>
                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
-                </div>
-                <div class="product-overlay">
-                    <div class="overlay-content">
-                        <h2>{{number_format ($pro->product_price)." "."VNĐ"}}</h2>
-                        <p>{{ $pro->product_name }}</p>
-                        <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
-                    </div>
                 </div>
             </div>
             <div class="choose">

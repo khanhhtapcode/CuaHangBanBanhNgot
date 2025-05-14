@@ -29,7 +29,7 @@ class BrandProduct extends Controller
         $data['brand_status'] = $request->brand_status;
         DB::table('tbl_brand')->insert($data);
         Session::put('thongbao', 'Thêm thương hiệu sản phẩm thành công');
-        return Redirect::route('admin.add_brand_product');
+        return Redirect::route('admin.list_brand_product');
     }
     public function an_thuonghieu($brand_id)
     {
@@ -64,5 +64,27 @@ class BrandProduct extends Controller
         DB::table('tbl_brand')->where('bthương hiệurand_id', $brand_id)->delete();
         Session::put('thongbao', 'Xóa thương hiệu sản phẩm thành công');
         return Redirect::route('admin.list_brand_product');
+    }
+
+    //Kết thúc phần admin của thương hiệu sản phẩm
+
+    public function show_brand_home($brand_id)
+    {
+        $category_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
+
+        // Lấy danh sách sản phẩm theo danh mục
+        $brand_by_id = DB::table('tbl_product')
+            ->join('tbl_brand', 'tbl_product.brand_id', '=', 'tbl_brand.brand_id')
+            ->where('tbl_brand.brand_id', $brand_id)
+            ->orderby('tbl_product.product_id', 'desc')->get();
+
+        // Lấy tên hiển thị thương hiệu
+        $brand_by_name = DB::table('tbl_brand')->where('brand_id', $brand_id)->limit(1)->get();
+        return view('pages.brand.show_brand')
+            ->with('category_product', $category_product)
+            ->with('brand_product', $brand_product)
+            ->with('product', $brand_by_id)// Truyền biến $product
+            ->with('brand_name', $brand_by_name);// Truyền biến $brand_by_name
     }
 }

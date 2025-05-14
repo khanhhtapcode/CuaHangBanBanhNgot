@@ -10,14 +10,24 @@ use Illuminate\Support\Facades\Redirect;
 session_start();
 class AdminController extends Controller
 {
+    public function nhandiendangnhap()
+    {
+        $admin_id = Session::get('admin_id');
+        if ($admin_id) {
+            return Redirect::to('dashboard');
+        } else {
+            return Redirect::to('admin')->send();
+        }
+    }
     // form dang nhap
     public function index()
     {
         return view('admin_login');
     }
     // trang chu admin
-    public function show_dashboard()
+     public function show_dashboard()
     {
+        $this->nhandiendangnhap();
         return view('admin.dashboard');
     }
     // xu li dang nhap
@@ -45,6 +55,7 @@ class AdminController extends Controller
     // phuong thuc dang xuat
     public function dangxuat(Request $request)
     {
+        $this->nhandiendangnhap();
         Session::put('admin_name', null);
         Session::put('admin_id', null);
         echo "ban da dang xuat";

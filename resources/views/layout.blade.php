@@ -132,7 +132,7 @@
                                         <li><a href="blog-single.html">Bài viết chi tiết</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="404.html">404</a></li>
+                                <li><a href="404.html">Giỏ hàng</a></li>
                                 <li><a href="contact-us.html">Liên hệ</a></li>
                             </ul>
                         </div>
@@ -215,106 +215,45 @@
             <div class="row">
                 <div class="col-sm-3">
                     <div class="left-sidebar">
-                        <h2>Danh mục</h2>
+                        <h2>Danh mục sản phẩm</h2>
                         <div class="panel-group category-products" id="accordian"><!--category-products-->
+                            @foreach ($category_product as $key => $cate)
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#banhngot">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                            Bánh Ngọt
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="banhngot" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Bánh Quy </a></li>
-                                            <li><a href="#">Bánh Cupcake </a></li>
-                                            <li><a href="#">Bánh Donut </a></li>
-                                            <li><a href="#">Bánh Macaron</a></li>
-                                            <li><a href="#">Bánh Tiramisu </a></li>
-                                        </ul>
-                                    </div>
+                                    <h4 class="panel-title"><a href="{{ URL::to('/loc-danh-muc-san-pham/'.$cate->category_id) }}">{{$cate->category_name}}</a></h4>
                                 </div>
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#banhkem">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                            Bánh Kem
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="banhkem" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Bánh Sinh Nhật</a></li>
-                                            <li><a href="#">Bánh Cưới</a></li>
-                                            <li><a href="#">Bánh Kem Dâu</a></li>
-                                            <li><a href="#">Bánh Kem Sô-cô-la</a></li>
-                                            <li><a href="#">Bánh Kem Trà Xanh</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title">
-                                        <a data-toggle="collapse" data-parent="#accordian" href="#banhman">
-                                            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
-                                            Bánh Mặn
-                                        </a>
-                                    </h4>
-                                </div>
-                                <div id="banhman" class="panel-collapse collapse">
-                                    <div class="panel-body">
-                                        <ul>
-                                            <li><a href="#">Bánh Mì</a></li>
-                                            <li><a href="#">Bánh Bao</a></li>
-                                            <li><a href="#">Bánh Pate</a></li>
-                                            <li><a href="#">Bánh Quiche</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Bánh Truyền Thống</a></h4>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 class="panel-title"><a href="#">Bánh Sự Kiện</a></h4>
-                                </div>
-                            </div>
+                            @endforeach
                         </div><!--/category-products-->
 
                         <div class="brands_products"><!--brands_products-->
-                            <h2>Loại bánh</h2>
+                            <h2>Thương hiệu bánh</h2>
+
                             <div class="brands-name">
+
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><a href="#"> <span class="pull-right">(50)</span>Bánh Quy</a></li>
-                                    <li><a href="#"> <span class="pull-right">(56)</span>Bánh Kem</a></li>
-                                    <li><a href="#"> <span class="pull-right">(27)</span>Bánh Mì</a></li>
-                                    <li><a href="#"> <span class="pull-right">(32)</span>Bánh Donut</a></li>
-                                    <li><a href="#"> <span class="pull-right">(5)</span>Bánh Macaron</a></li>
+                                    @foreach ($brand_product as $key => $brand)
+                                    <li>
+                                        <a href="{{ URL::to('/loc-thuong-hieu-san-pham/'.$brand->brand_id) }}">
+                                            <span class="pull-right">(50)</span>{{ $brand->brand_name }}
+                                        </a>
+                                    </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div><!--/brands_products-->
 
-                        <div class="price-range"><!--price-range-->
+                        <!-- <div class="price-range">
                             <h2>Khoảng giá</h2>
                             <div class="well text-center">
                                 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="2000000" data-slider-step="5000" data-slider-value="[500000,1500000]" id="sl2"><br />
                                 <b class="pull-left">0 ₫</b> <b class="pull-right">2.000.000 ₫</b>
                             </div>
-                        </div><!--/price-range-->
+                        </div>/price-range -->
 
-                        <div class="shipping text-center"><!--shipping-->
-                            <img src="{{('public/frontend/images/home/shipping.jpg')}}" alt="Giao hàng miễn phí" />
-                        </div><!--/shipping-->
+                        <!-- <div class="shipping text-center"> shipping -->
+                        <!-- <img src="{{('public/frontend/images/home/shipping.jpg')}}" alt="Giao hàng miễn phí" />
+                        </div>/shipping -->
                     </div>
                 </div>
 
@@ -488,4 +427,5 @@
     <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
     <script src="{{asset('public/frontend/js/main.js')}}"></script>
 </body>
+
 </html>

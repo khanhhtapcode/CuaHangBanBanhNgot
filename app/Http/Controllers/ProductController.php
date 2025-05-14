@@ -24,10 +24,10 @@ class ProductController extends Controller
             ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
             ->orderBy('tbl_product.product_id', 'desc')
             ->get(); // <--- Quan trọng!
-    
+
         return view('admin.list_product')->with('list_product', $lietke_sanpham);
     }
-    
+
 
     public function luu_sanpham(Request $request)
     {
@@ -58,43 +58,68 @@ class ProductController extends Controller
 
         DB::table('tbl_product')->insert($data);
         Session::put('thongbao', 'Thêm sản phẩm thành công');
-        return redirect()->back(); // ← về lại form
+        return Redirect::route('admin.list_product');
     }
 
 
     public function an_sanpham($product_id)
     {
         DB::table('tbl_product')->where('product_id', $product_id)->update(['product_status' => 1]);
-        Session::put('thongbao', 'Ẩn thương hiệu sản phẩm thành công');
+        Session::put('thongbao', 'Ẩn sản phẩm thành công');
         return Redirect::route('admin.list_product');
     }
     public function hien_sanpham($product_id)
     {
         DB::table('tbl_product')->where('product_id', $product_id)->update(['product_status' => 0]);
-        Session::put('thongbao', 'Hiện thương hiệu sản phẩm thành công');
+        Session::put('thongbao', 'Hiệnr thị sản phẩm thành công');
         return Redirect::route('admin.list_product');
     }
-    public function sua_thuonghieu($brand_id)
+    public function sua_sanpham($product_id)
     {
-        // lấy thông tin danh mục sản phẩm
-        $sua_thuonghieu = DB::table('tbl_brand')->where('brand_id', $brand_id)->get();
-        return view('admin.edit_brand_product')->with('edit_brand_product', $sua_thuonghieu);
-        //
+        $category_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
+
+        // Lấy thông tin sản phẩm cần sửa
+        $edit_product = DB::table('tbl_product')->where('product_id', $product_id)->get(); // dùng get() vì trong view có foreach
+
+        return view('admin.edit_product')
+            ->with('edit_product', $edit_product) // ← TRUYỀN ĐÚNG DỮ LIỆU
+            ->with('category_product', $category_product)
+            ->with('brand_product', $brand_product);
     }
-    public function luucapnhat_thuonghieu(Request $request, $brand_id)
+
+    public function luucapnhat_sanpham(Request $request, $product_id)
+    {
+        $get_image = $request->file('product_image');
+
+        // Chuẩn bị dữ liệu cần cập nhật
+        $data = array();
+        $data['product_name'] = $request->product_name;
+        $data['product_desc'] = $request->product_desc;
+        $data['product_content'] = $request->product_content;
+        $data['product_price'] = $request->product_price;
+        $data['category_id'] = $request->category_product_id;
+        $data['brand_id'] = $request->brand_id;
+        $data['product_status'] = $request->product_status;
+
+        // Nếu có ảnh mới thì xử lý, còn không thì giữ nguyên ảnh cũ
+        if ($get_image) {
+            $new_image = time() . '.' . $get_image->getClientOriginalExtension();
+            $get_image->move('public/uploads/product', $new_image);
+            $data['product_image'] = $new_image;
+        }
+
+        // Cập nhật vào database
+        DB::table('tbl_product')->where('product_id', $product_id)->update($data);
+
+        Session::put('thongbao', 'Cập nhật sản phẩm thành công');
+        return Redirect::route('admin.list_product');
+    }
+    public function xoa_sanpham(Request $request, $product_id)
     {
         $data = array();
-        $data['brand_name'] = $request->brand_name;
-        $data['brand_desc'] = $request->brand_desc;
-        DB::table('tbl_brand')->where('brand_id', $brand_id)->update($data);
-        Session::put('thongbao', 'Sửa thương hiệu sản phẩm thành công');
-        return Redirect::route('admin.list_brand_product');
-    }
-    public function xoa_thuonghieu(Request $request, $brand_id)
-    {
-        $data = array();
-        DB::table('tbl_brand')->where('bthương hiệurand_id', $brand_id)->delete();
-        Session::put('thongbao', 'Xóa thương hiệu sản phẩm thành công');
-        return Redirect::route('admin.list_brand_product');
+        DB::table('tbl_product')->where('product_id', $product_id)->delete();
+        Session::put('thongbao', 'Xóa sản phẩm thành công');
+        return Redirect::route('admin.list_product');
     }
 }
