@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandProduct;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProduct;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 
@@ -101,9 +102,15 @@ Route::get('/show-cart', [CartController::class, 'show_cart'])->name('admin.show
 Route::get('/delete-to-cart/{product_id}', [CartController::class, 'delete_cart'])->name('admin.delete_cart');
 Route::post('/update-cart', [CartController::class, 'update_cart'])->name('update.cart');
 
-
-
-
+//Thanh toán
+Route::get('/login-checkout', [CheckoutController::class, 'login_checkout'])->name('admin.login_checkout');
+Route::get('/logout-checkout', [CheckoutController::class, 'logout_checkout'])->name('admin.logout_checkout');
+// Xử lý thêm khách hàng
+Route::post('/signup-customer', [CheckoutController::class, 'signup_customer'])->name('admin.signup_customer');
+// Xử lý đăng nhập khách hàng
+Route::post('/login-customer', [CheckoutController::class, 'login_customer'])->name('admin.login_customer');
+Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('admin.checkout');
+Route::post('/save-shipping', [CheckoutController::class, 'save_shipping'])->name('admin.save_shipping');
 
 
 

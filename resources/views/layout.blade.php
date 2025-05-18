@@ -90,11 +90,43 @@
                     <div class="col-sm-8">
                         <div class="shop-menu pull-right">
                             <ul class="nav navbar-nav">
-                                <li><a href="#"><i class="fa fa-user"></i> Tài khoản</a></li>
                                 <li><a href="#"><i class="fa fa-star"></i> Danh sách yêu thích</a></li>
-                                <li><a href="checkout.html"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
-                                <li><a href="{{route('admin_login')}}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                                <?php
+
+                                use Illuminate\Support\Facades\Session;
+
+                                $customer_id = Session::get('customer_id');
+                                if ($customer_id != NULL) {
+
+                                ?>
+                                    <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
+                                <?php
+                                } else {
+                                ?>
+                                    <li><a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                                <?php
+                                }
+                                ?>
+
+                                <li><a href="{{URL::to ('/show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
+
+
+                                <?php
+
+                                $customer_id = Session::get('customer_id');
+                                if ($customer_id != NULL) {
+
+                                ?>
+                                    <li><a href="{{ URL::to('/logout-checkout') }}"><i class="fa fa-lock"></i> Đăng xuất</a></li>
+                                <?php
+                                } else {
+                                ?>
+                                    <li><a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
+                                <?php
+                                }
+                                ?>
+
+
                             </ul>
                         </div>
                     </div>
@@ -279,7 +311,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{('public/frontend/images/home/iframe1.png')}}" alt="Video làm bánh" />
+                                        <img src="{{URL::to('public/uploads/product/banh1.webp')}}" alt="Video làm bánh" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>

@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-
 <section id="cart_items">
     <div class="container">
         <div class="breadcrumbs">
@@ -29,9 +28,9 @@
                     @if(!empty($cart) && count($cart) > 0)
                     @foreach($cart as $key => $item)
                     <?php
-                    echo '<pre>';
-                    print_r($item);
-                    echo '</pre>';
+                    // echo '<pre>';
+                    // print_r($item);
+                    // echo '</pre>';
                     $subtotal = $item['product_price'] * $item['quantity'];
                     $total += $subtotal;
                     ?>
@@ -59,7 +58,7 @@
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
                                 <input type="hidden" name="action" value="increase">
-                                <button type="submit" class="cart_quantity_up" > + </button>
+                                <button type="submit" class="cart_quantity_up"> + </button>
                             </form>
 
                             {{-- Ô hiển thị số lượng (readonly) --}}
@@ -104,12 +103,12 @@
 </section>
 <section id="do_action">
     <div class="container">
-        <div class="heading">
+        <!-- <div class="heading">
             <h3>What would you like to do next?</h3>
             <p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-        </div>
+        </div> -->
         <div class="row">
-            <div class="col-sm-6">
+            <!-- <div class="col-sm-6">
                 <div class="chose_area">
                     <ul class="user_option">
                         <li>
@@ -162,7 +161,7 @@
                     <a class="btn btn-default update" href="">Get Quotes</a>
                     <a class="btn btn-default check_out" href="">Continue</a>
                 </div>
-            </div>
+            </div> -->
             <div class="col-sm-6">
                 <div class="total_area">
                     <ul>
@@ -171,12 +170,26 @@
                         <li>Phí ship<span>Free</span></li>
                         <li>Tổng<span>{{ number_format($total, 0, ',', '.') }} VNĐ</span></li>
                     </ul>
-                    <a class="btn btn-default update" href="">Update</a>
-                    <a class="btn btn-default check_out" href="">Check Out</a>
+                    <!-- <a class="btn btn-default update" href="">Update</a> -->
+                    <?php
+
+                    use Illuminate\Support\Facades\Session;
+
+                    $customer_id = Session::get('customer_id');
+                    if ($customer_id != NULL) {
+
+                    ?>
+                        <a class="btn btn-default check_out " href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+                    <?php
+                    } else {
+                    ?>
+                        <a class="btn btn-default check_out " href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a>
+                    <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
     </div>
 </section><!--/#do_action-->
-
 @endsection
