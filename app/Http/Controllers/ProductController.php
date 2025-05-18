@@ -119,7 +119,24 @@ class ProductController extends Controller
     {
         $data = array();
         DB::table('tbl_product')->where('product_id', $product_id)->delete();
-        Session::put('thongbao', 'Xóa sản phẩm thành công');
+        Session::put('thongbao', value: 'Xóa sản phẩm thành công');
         return Redirect::route('admin.list_product');
     }
+
+    // Kết thúc trang admin 
+    public function details_product($product_id)
+    {
+        $category_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
+
+        $details_product = DB::table('tbl_product')
+            ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
+            ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')
+            ->where('tbl_product.product_id', $product_id)
+            ->get(); // <--- Quan trọng!
+
+        return view('pages.product.show_details')->with('category_product', $category_product)
+        ->with('brand_product', $brand_product)->with('details_product', $details_product);
+    }
+
 }

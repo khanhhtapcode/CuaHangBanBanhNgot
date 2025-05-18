@@ -8,8 +8,8 @@
     
     <h2 class="title text-center">{{ $cate_name->category_name}}</h2>
     @endforeach
-
-    @foreach ($product as $key => $pro)
+    @foreach ($category_by_id as $key => $pro)
+    <a href="{{URL::to ('/chi-tiet-san-pham/'.$pro->product_id)}}">
     <div class="col-sm-4">
         <div class="product-image-wrapper">
             <div class="single-products">
@@ -28,6 +28,7 @@
             </div>
         </div>
     </div>
+    </a>
      @endforeach
     <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
         <i class="fa fa-angle-right"></i>

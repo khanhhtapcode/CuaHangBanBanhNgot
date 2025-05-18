@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -94,7 +92,7 @@ class CategoryProduct extends Controller
         return view('pages.category.show_category')
             ->with('category_product', $category_product)
             ->with('brand_product', $brand_product)
-            ->with('product', $category_by_id) // Truyền biến $product
+            ->with('category_by_id', $category_by_id) 
             ->with('category_name', $category_by_name); // Truyền biến $category_name
     }
 }

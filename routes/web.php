@@ -6,6 +6,7 @@ use Livewire\Volt\Volt;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandProduct;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoryProduct;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
@@ -17,6 +18,10 @@ Route::view('dashboard', 'HomeController@index');
 Route::get('/trang-chu', function () {
     return view('trangchu');
 });
+Route::get('/dashboard', function () {
+    return view('dashboard'); // hoặc controller tùy 
+})->name('dashboard');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -30,7 +35,7 @@ Route::get('/admin/login', function () {
 Route::get('/loc-danh-muc-san-pham/{category_product_id}', action: [CategoryProduct::class, 'show_category_home'])->name('admin.show_category_home');
 // trang chu thuong hieu san pham
 Route::get('/loc-thuong-hieu-san-pham/{brand_id}', action: [BrandProduct::class, 'show_brand_home'])->name('admin.show_brand_home');
-
+Route::get('/chi-tiet-san-pham/{product_id}', action: [ProductController::class, 'details_product'])->name('admin.details_product');
 
 // backend
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
@@ -89,6 +94,13 @@ Route::get('/sua-sanpham/{product_id}', [ProductController::class, 'sua_sanpham'
 Route::post('/luu-capnhat-sanpham/{product_id}', [ProductController::class, 'luucapnhat_sanpham'])->name('admin.luucapnhat_sanpham');
 // Xử lý xóa danh mục
 Route::get('/xoa-sanpham/{product_id}', [ProductController::class, 'xoa_sanpham'])->name('admin.xoa_sanpham');
+
+//Giỏ hàng
+Route::post('/save-cart', [CartController::class, 'save_cart'])->name('admin.save_cart');
+Route::get('/show-cart', [CartController::class, 'show_cart'])->name('admin.show_cart');
+Route::get('/delete-to-cart/{product_id}', [CartController::class, 'delete_cart'])->name('admin.delete_cart');
+Route::post('/update-cart', [CartController::class, 'update_cart'])->name('update.cart');
+
 
 
 
