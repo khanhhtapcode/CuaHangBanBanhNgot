@@ -36,9 +36,11 @@ class CheckoutController extends Controller
     {
         $category_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
+        $cart = session()->get('cart', []); // Lấy giỏ hàng từ session, mặc định mảng rỗng nếu chưa có
         return view('pages.checkout.show_checkout')
             ->with('category_product', $category_product)
-            ->with('brand_product', $brand_product);
+            ->with('brand_product', $brand_product)
+            ->with('cart', $cart); // Truyền biến cart sang view
     }
     public function save_shipping(Request $request)
     {
@@ -54,8 +56,14 @@ class CheckoutController extends Controller
         return Redirect::to('/payment');
     }
     public function payment()
-    {
-        echo "Thanh toán";
+    {  
+        $category_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
+        $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
+        $cart = session()->get('cart', []); // Lấy giỏ hàng từ session, mặc định mảng rỗng nếu chưa có
+        return view('pages.checkout.payment')->
+            with('category_product', $category_product)
+            ->with('brand_product', $brand_product)
+            ->with('cart', $cart); // Truyền biến cart sang view
     }
     public function logout_checkout()
     {
@@ -74,4 +82,5 @@ class CheckoutController extends Controller
             return Redirect::to('/login-checkout')->with('message', 'Tài khoản hoặc mật khẩu không đúng');
         }
     }
+    
 }

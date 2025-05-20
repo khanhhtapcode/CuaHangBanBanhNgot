@@ -8,33 +8,6 @@
                 <li class="active">Thanh Toán giỏ hàng</li>
             </ol>
         </div>
-
-        <div class="register-req">
-            <p>Vui lòng đăng ký tài khoản và tiến hành thanh toán để dễ dàng theo dõi lịch sử đơn hàng, hoặc tiếp tục với thanh toán không cần đăng ký.</p>
-        </div><!--/register-req-->
-
-        <div class="shopper-informations">
-            <div class="row">
-                <div class="col-sm-20 clearfix">
-                    <div class="bill-to">
-                        <p>Điền thông tin khách hàng</p>
-                        <div class="form-one">
-                            <form action="{{ URL::to('/save-shipping') }}" method="POST">
-                                {{ csrf_field() }}
-                                <input type="text" name="shipping_name" placeholder="Họ và tên">
-                                <input type="email" name="shipping_email" placeholder="Email*">
-
-                                <input type="text" name="shipping_address" placeholder="Địa chỉ">
-                                <input type="text" name="shipping_phone" placeholder="Số điện thoại">
-                                <p>Ghi chú gửi hàng</p>
-                                <textarea name="shipping_notes" placeholder="Ghi chú cho đơn hàng, hướng dẫn đặc biệt khi giao hàng" rows="16"></textarea>
-                                <input type="submit" value="Gửi" name="send_order" class="btn btn-primary btn-sm-10">
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="review-payment">
             <h2>Xem lại giỏ hàng và thanh toán</h2>
         </div>
@@ -57,7 +30,9 @@
                     @if(!empty($cart) && count($cart) > 0)
                     @foreach($cart as $key => $item)
                     <?php
-                    
+                    // echo '<pre>';
+                    // print_r($item);
+                    // echo '</pre>';
                     $subtotal = $item['product_price'] * $item['quantity'];
                     $total += $subtotal;
                     ?>
@@ -106,13 +81,14 @@
                                 $subtotal = $item['product_price'] * $item['quantity'];
                                 echo number_format($subtotal, 0, ',', '.') . ' VNĐ';
                                 ?>
-                            </p>
+                            </p>    
                         </td>
                         <td class="cart_delete">
                             <a href="{{ URL::to('/delete-to-cart/'.$item['product_id']) }}"><i class="fa fa-times"></i></a>
                         </td>
                     </tr>
                     @endforeach
+
                     <!-- <tr>
                         <td colspan="4" class="text-right"><strong>Tổng cộng:</strong></td>
                         <td colspan="2"><strong>{{ number_format($total, 0, ',', '.') }} VNĐ</strong></td>
@@ -125,6 +101,27 @@
                 </tbody>
             </table>
         </div>
+        <h4 style="margin:40px 0; font-size: 20px;" class="review-payment">Vui lòng chọn hình thức thanh toán</h4>
+        <form action="{{URL::to ('/order-place') }}" method="post">
+        {{ csrf_field() }}
+        <div class="payment-options">
+            <span>
+                <label>
+                    <input name="payment_option" value='bằng ATM' type="checkbox" value="bank"> Chuyển khoản ATM
+                </label>
+            </span>
+            <span>
+                <label>
+                    <input name="payment_option" value='tiền mặt' type="checkbox" value="check"> Thanh toán bằng tiền mặt
+                </label>
+            </span>
+            <span>
+                <label>
+                    <input name="payment_option" value='thẻ ghi nợ' type="checkbox" value="paypal"> Thanh toán qua ngân hàng
+                </label>
+            </span>
+        </div>
+        </form>
     </div>
 </section> <!--/#cart_items-->
 

@@ -22,7 +22,8 @@ Route::get('/trang-chu', function () {
 Route::get('/dashboard', function () {
     return view('dashboard'); // hoặc controller tùy 
 })->name('dashboard');
-
+// Tìm kiếm sản phẩm
+Route::post('/tim-kiem', [HomeController::class, 'search'])->name('search');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -105,6 +106,7 @@ Route::post('/update-cart', [CartController::class, 'update_cart'])->name('updat
 //Thanh toán
 Route::get('/login-checkout', [CheckoutController::class, 'login_checkout'])->name('admin.login_checkout');
 Route::get('/logout-checkout', [CheckoutController::class, 'logout_checkout'])->name('admin.logout_checkout');
+Route::get('/payment', [CheckoutController::class, 'payment'])->name('admin.payment');
 // Xử lý thêm khách hàng
 Route::post('/signup-customer', [CheckoutController::class, 'signup_customer'])->name('admin.signup_customer');
 // Xử lý đăng nhập khách hàng

@@ -26,6 +26,10 @@
 </head><!--/head-->
 
 <body>
+    <?php
+
+    use Illuminate\Support\Facades\Session;
+    ?>
     <header id="header"><!--header-->
         <div class="header_top"><!--header_top-->
             <div class="container">
@@ -92,21 +96,28 @@
                             <ul class="nav navbar-nav">
                                 <li><a href="#"><i class="fa fa-star"></i> Danh sách yêu thích</a></li>
                                 <?php
-
-                                use Illuminate\Support\Facades\Session;
-
                                 $customer_id = Session::get('customer_id');
-                                if ($customer_id != NULL) {
-
+                                $shipping_id = Session::get('shipping_id');
                                 ?>
-                                    <li><a href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a></li>
-                                <?php
-                                } else {
-                                ?>
-                                    <li><a href="{{ URL::to('/login-checkout') }}"><i class="fa fa-lock"></i> Đăng nhập</a></li>
-                                <?php
-                                }
-                                ?>
+                                <?php if ($customer_id != NULL && $shipping_id == NULL): ?>
+                                    <li>
+                                        <a href="{{ URL::to('/checkout') }}">
+                                            <i class="fa fa-crosshairs"></i> Thanh toán
+                                        </a>
+                                    </li>
+                                <?php elseif ($customer_id != NULL && $shipping_id != NULL): ?>
+                                    <li>
+                                        <a href="{{ URL::to('/payment') }}">
+                                            <i class="fa fa-crosshairs"></i> Thanh toán
+                                        </a>
+                                    </li>
+                                <?php else: ?>
+                                    <li>
+                                        <a href="{{ URL::to('/login-checkout') }}">
+                                            <i class="fa fa-crosshairs"></i> Thanh toán
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
 
                                 <li><a href="{{URL::to ('/show-cart') }}"><i class="fa fa-shopping-cart"></i> Giỏ hàng</a></li>
 
@@ -137,7 +148,7 @@
         <div class="header-bottom"><!--header-bottom-->
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-9">
+                    <div class="col-sm-8">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                                 <span class="sr-only">Chuyển đổi điều hướng</span>
@@ -152,10 +163,24 @@
                                 <li class="dropdown"><a href="#">Cửa hàng<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Sản phẩm</a></li>
-                                        <li><a href="product-details.html">Chi tiết sản phẩm</a></li>
-                                        <li><a href="checkout.html">Thanh toán</a></li>
-                                        <li><a href="cart.html">Giỏ hàng</a></li>
-                                        <li><a href="login.html">Đăng nhập</a></li>
+                                        <!-- Thanh toán phải kiếm tra điều kiện -->
+                                        <?php
+
+                                        $customer_id = Session::get('customer_id');
+                                        if ($customer_id != NULL) {
+
+                                        ?>
+                                            <li><a href="{{ URL::to('/checkout') }}"></i>Thanh toán</a></li>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <li><a href="{{ URL::to('/login-checkout') }}">Thanh toán</a></li>
+                                        <?php
+                                        }
+                                        ?>
+                                        <!-- <li><a href="checkout.html">Thanh toán</a></li> -->
+                                        <li><a href="{{URL::to ('/show-cart') }}">Giỏ hàng</a></li>
+
                                     </ul>
                                 </li>
                                 <li class="dropdown"><a href="#">Tin tức<i class="fa fa-angle-down"></i></a>
@@ -164,15 +189,19 @@
                                         <li><a href="blog-single.html">Bài viết chi tiết</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="404.html">Giỏ hàng</a></li>
+                                <li><a href="{{URL::to ('/show-cart') }}">Giỏ hàng</a></li>
                                 <li><a href="contact-us.html">Liên hệ</a></li>
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-3">
-                        <div class="search_box pull-right">
-                            <input type="text" placeholder="Tìm kiếm" />
-                        </div>
+                    <div class="col-sm-4">
+                        <form action="{{URL::to ('/tim-kiem') }}" method="post">
+                            {{ csrf_field() }}
+                            <div class="search_box pull-right">
+                                <input type="text" name="keywords_submit" placeholder="Tìm kiếm sản phẩm" />
+                                <button name="search_items" value="Tìm kiếm" type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
