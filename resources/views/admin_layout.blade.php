@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <title>Quản trị viên | Trang chủ :: w3layouts</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Giao diện quản trị viên responsive, Bootstrap Web Templates, Flat Web Templates, Giao diện tương thích Android, 
+    <meta name="keywords" content="Giao diện quản trị viên responsive, Bootstrap Web Templates, Flat Web Templates, Giao diện tương thích Android,
 Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, Samsung, LG, SonyEricsson, Motorola" />
     <script type="application/x-javascript">
         addEventListener("load", function() {
@@ -22,25 +22,25 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
         }
     </script>
     <!-- bootstrap-css -->
-    <link rel="stylesheet" href="{{ url('public/backend/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url('backend/css/bootstrap.min.css') }}">
     <!-- //bootstrap-css -->
     <!-- Custom CSS -->
-    <link href="{{ url('public/backend/css/style.css') }}" rel='stylesheet' type='text/css' />
-    <link href="{{ url('public/backend/css/style-responsive.css') }}" rel="stylesheet" />
+    <link href="{{ url('backend/css/style.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ url('backend/css/style-responsive.css') }}" rel="stylesheet" />
     <!-- font CSS -->
     <link href='//fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <!-- font-awesome icons -->
-    <link rel="stylesheet" href="{{ url('public/backend/css/font.css') }}" type="text/css" />
-    <link href="{{ url('public/backend/css/font-awesome.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('public/backend/css/morris.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ url('backend/css/font.css') }}" type="text/css" />
+    <link href="{{ url('backend/css/font-awesome.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url('backend/css/morris.css') }}" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- calendar -->
-    <link rel="stylesheet" href="{{ url('public/backend/css/monthly.css') }}">
+    <link rel="stylesheet" href="{{ url('backend/css/monthly.css') }}">
     <!-- //calendar -->
     <!-- //font-awesome icons -->
-    <script src="{{ url('public/backend/js/jquery2.0.3.min.js') }}"></script>
-    <script src="{{ url('public/backend/js/raphael-min.js') }}"></script>
-    <script src="{{ url('public/backend/js/morris.js') }}"></script>
+    <script src="{{ url('backend/js/jquery2.0.3.min.js') }}"></script>
+    <script src="{{ url('backend/js/raphael-min.js') }}"></script>
+    <script src="{{ url('backend/js/morris.js') }}"></script>
 </head>
 
 <body>
@@ -164,11 +164,11 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
         </section>
         <!--main content end-->
     </section>
-    <script src="{{ url('public/backend/js/bootstrap.js') }}"></script>
-    <script src="{{ url('public/backend/js/jquery.dcjqaccordion.2.7.js') }}"></script>
-    <script src="{{ url('public/backend/js/scripts.js') }}"></script>
-    <script src="{{ url('public/backend/js/jquery.slimscroll.js') }}"></script>
-    <script src="{{ url('public/backend/js/jquery.nicescroll.js') }}"></script>
+    <script src="{{ url('backend/js/bootstrap.js') }}"></script>
+    <script src="{{ url('backend/js/jquery.dcjqaccordion.2.7.js') }}"></script>
+    <script src="{{ url('backend/js/scripts.js') }}"></script>
+    <script src="{{ url('backend/js/jquery.slimscroll.js') }}"></script>
+    <script src="{{ url('backend/js/jquery.nicescroll.js') }}"></script>
     <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="js/flot-chart/excanvas.min.js"></script><![endif]-->
     <script src="js/jquery.scrollTo.js"></script>
     <!-- morris JavaScript -->
