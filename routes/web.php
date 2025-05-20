@@ -20,7 +20,7 @@ Route::get('/trang-chu', function () {
     return view('trangchu');
 });
 Route::get('/dashboard', function () {
-    return view('dashboard'); // hoặc controller tùy 
+    return view('dashboard'); // hoặc controller tùy
 })->name('dashboard');
 // Tìm kiếm sản phẩm
 Route::post('/tim-kiem', [HomeController::class, 'search'])->name('search');

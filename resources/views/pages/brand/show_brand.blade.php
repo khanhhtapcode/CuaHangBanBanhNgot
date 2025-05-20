@@ -13,7 +13,7 @@
         <div class="product-image-wrapper">
             <div class="single-products">
                 <div class="productinfo text-center">
-                    <img src="{{URL::to ('public/uploads/product/'.$pro->product_image) }}" alt="" />
+                    <img src="{{URL::to ('uploads/product/'.$pro->product_image) }}" alt="" />
                     <h2>{{number_format ($pro->product_price)." "."VNĐ" }}</h2>
                     <p>{{ $pro->product_name }}</p>
                     <a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>

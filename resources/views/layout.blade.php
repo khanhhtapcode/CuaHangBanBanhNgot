@@ -7,22 +7,22 @@
     <meta name="description" content="Cửa hàng bánh ngọt Quang Béo Cakes">
     <meta name="author" content="Quang Béo Cakes">
     <title>Trang chủ | Quang Béo Cakes</title>
-    <link href="{{asset('public/frontend/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/frontend/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('public/frontend/css/prettyPhoto.css')}}" rel="stylesheet">
-    <link href="{{asset('public/frontend/css/price-range.css')}}" rel="stylesheet">
-    <link href="{{asset('public/frontend/css/animate.css')}}" rel="stylesheet">
-    <link href="{{asset('public/frontend/css/main.css')}}" rel="stylesheet">
-    <link href="{{asset('public/frontend/css/responsive.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/prettyPhoto.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/price-range.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/animate.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/main.css')}}" rel="stylesheet">
+    <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet">
     <!--[if lt IE 9]>
-    <script src="{{('public/frontend/js/html5shiv.js')}}"></script>
-    <script src="{{('public/frontend/js/respond.min.js')}}"></script>
+    <script src="{{('frontend/js/html5shiv.js')}}"></script>
+    <script src="{{('frontend/js/respond.min.js')}}"></script>
     <![endif]-->
-    <link rel="shortcut icon" href="{{('public/frontend/images/ico/favicon.ico')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{('public/frontend/images/ico/apple-touch-icon-144-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{('public/frontend/images/ico/apple-touch-icon-114-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{('public/frontend/images/ico/apple-touch-icon-72-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{('public/frontend/images/ico/apple-touch-icon-57-precomposed.png')}}">
+    <link rel="shortcut icon" href="{{('frontend/images/ico/favicon.ico')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{('frontend/images/ico/apple-touch-icon-144-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{('frontend/images/ico/apple-touch-icon-114-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{('frontend/images/ico/apple-touch-icon-72-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{('frontend/images/ico/apple-touch-icon-57-precomposed.png')}}">
 </head><!--/head-->
 
 <body>
@@ -63,7 +63,7 @@
                     <div class="col-sm-4">
                         <div class="logo pull-left">
                             <a href="{{ route('home') }}">
-                                <img src="{{ asset('public/frontend/images/logo.png') }}" alt="Quang Béo Cakes" />
+                                <img src="{{ asset('frontend/images/logo.png') }}" alt="Quang Béo Cakes" />
                             </a>
 
                         </div>
@@ -228,7 +228,7 @@
                                     <button type="button" class="btn btn-default get">Mua ngay</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{('public/frontend/images/poster1.png')}}" class="girl img-responsive" alt="Bánh ngọt" />
+                                    <img src="{{('frontend/images/poster1.png')}}" class="girl img-responsive" alt="Bánh ngọt" />
 
                                 </div>
                             </div>
@@ -240,7 +240,7 @@
                                     <button type="button" class="btn btn-default get">Mua ngay</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{('public/frontend/images/poster1.png')}}" class="girl img-responsive" alt="Bánh kem" />
+                                    <img src="{{('frontend/images/poster1.png')}}" class="girl img-responsive" alt="Bánh kem" />
 
                                 </div>
                             </div>
@@ -253,7 +253,7 @@
                                     <button type="button" class="btn btn-default get">Mua ngay</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{('public/frontend/images/poster1.png')}}" class="girl img-responsive" alt="Bánh quy" />
+                                    <img src="{{('frontend/images/poster1.png')}}" class="girl img-responsive" alt="Bánh quy" />
 
                                 </div>
                             </div>
@@ -313,7 +313,7 @@
                         </div>/price-range -->
 
                         <!-- <div class="shipping text-center"> shipping -->
-                        <!-- <img src="{{('public/frontend/images/home/shipping.jpg')}}" alt="Giao hàng miễn phí" />
+                        <!-- <img src="{{('frontend/images/home/shipping.jpg')}}" alt="Giao hàng miễn phí" />
                         </div>/shipping -->
                     </div>
                 </div>
@@ -340,7 +340,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{URL::to('public/uploads/product/banh1.webp')}}" alt="Video làm bánh" />
+                                        <img src="{{URL::to('uploads/product/banh1.webp')}}" alt="Video làm bánh" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -355,7 +355,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{('public/frontend/images/home/iframe2.png')}}" alt="Video làm bánh kem" />
+                                        <img src="{{('frontend/images/iframe2.png')}}" alt="Video làm bánh kem" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -370,7 +370,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{('public/frontend/images/home/iframe3.png')}}" alt="Video làm bánh donut" />
+                                        <img src="{{('frontend/images/iframe3.png')}}" alt="Video làm bánh donut" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -385,7 +385,7 @@
                             <div class="video-gallery text-center">
                                 <a href="#">
                                     <div class="iframe-img">
-                                        <img src="{{('public/frontend/images/home/iframe4.png')}}" alt="Video làm bánh macaron" />
+                                        <img src="{{('frontend/images/iframe4.png')}}" alt="Video làm bánh macaron" />
                                     </div>
                                     <div class="overlay-icon">
                                         <i class="fa fa-play-circle-o"></i>
@@ -398,7 +398,7 @@
                     </div>
                     <div class="col-sm-3">
                         <div class="address">
-                            <img src="{{('public/frontend/images/home/map.png')}}" alt="Bản đồ cửa hàng" />
+                            <img src="{{('frontend/images/map.png')}}" alt="Bản đồ cửa hàng" />
                             <p>123 Nguyễn Huệ, Quận 1, TP.HCM</p>
                         </div>
                     </div>
@@ -481,12 +481,12 @@
         </div>
     </footer><!--/Footer-->
 
-    <script src="{{asset('public/frontend/js/jquery.js')}}"></script>
-    <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/jquery.scrollUp.min.js')}}"></script>
-    <script src="{{asset('public/frontend/js/price-range.js')}}"></script>
-    <script src="{{asset('public/frontend/js/jquery.prettyPhoto.js')}}"></script>
-    <script src="{{asset('public/frontend/js/main.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.js')}}"></script>
+    <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.scrollUp.min.js')}}"></script>
+    <script src="{{asset('frontend/js/price-range.js')}}"></script>
+    <script src="{{asset('frontend/js/jquery.prettyPhoto.js')}}"></script>
+    <script src="{{asset('frontend/js/main.js')}}"></script>
 </body>
 
 </html>

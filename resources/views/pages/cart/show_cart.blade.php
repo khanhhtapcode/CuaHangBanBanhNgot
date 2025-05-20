@@ -36,7 +36,7 @@
                     ?>
                     <tr>
                         <td class="cart_product">
-                            <img src="{{ url('public/uploads/product/'.$item['product_image']) }}" width="100" alt="{{ $item['product_name'] }}">
+                            <img src="{{ url('uploads/product/'.$item['product_image']) }}" width="100" alt="{{ $item['product_name'] }}">
                         </td>
                         <td class="cart_description">
                             <h4>{{ $item['product_name'] }}</h4>
@@ -50,7 +50,7 @@
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $item['product_id'] }}">
                                 <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" style="width: 60px;">
-                                
+
                             </form> -->
                         <td class="cart_quantity">
                             {{-- Nút tăng số lượng --}}
