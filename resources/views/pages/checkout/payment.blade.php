@@ -103,24 +103,25 @@
         </div>
         <h4 style="margin:40px 0; font-size: 20px;" class="review-payment">Vui lòng chọn hình thức thanh toán</h4>
         <form action="{{URL::to ('/order-place') }}" method="post">
-        {{ csrf_field() }}
+                {{ csrf_field() }}
         <div class="payment-options">
             <span>
                 <label>
-                    <input name="payment_option" value='bằng ATM' type="checkbox" value="bank"> Chuyển khoản ATM
+                    <input name="payment_option" value='1' type="checkbox" value="bank"> Thanh toán thẻ ATM nội địa
                 </label>
             </span>
             <span>
                 <label>
-                    <input name="payment_option" value='tiền mặt' type="checkbox" value="check"> Thanh toán bằng tiền mặt
+                    <input name="payment_option" value='2' type="checkbox" value="check"> Thanh toán bằng tiền mặt
                 </label>
             </span>
             <span>
                 <label>
-                    <input name="payment_option" value='thẻ ghi nợ' type="checkbox" value="paypal"> Thanh toán qua ngân hàng
+                    <input name="payment_option" value='3' type="checkbox" value="paypal"> Thanh toán qua ngân hàng
                 </label>
             </span>
         </div>
+        <button type="submit" value="Đặt hàng" name="send_order_place" class="btn btn-default get">Đặt hàng</button>
         </form>
     </div>
 </section> <!--/#cart_items-->

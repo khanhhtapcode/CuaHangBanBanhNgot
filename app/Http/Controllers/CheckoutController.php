@@ -56,13 +56,14 @@ class CheckoutController extends Controller
         return Redirect::to('/payment');
     }
     public function payment()
-    {  
+    {
+        $product = DB::table('tbl_product')->orderby('product_id', 'desc')->get();
         $category_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
         $cart = session()->get('cart', []); // Lấy giỏ hàng từ session, mặc định mảng rỗng nếu chưa có
-        return view('pages.checkout.payment')->
-            with('category_product', $category_product)
+        return view('pages.checkout.payment')->with('category_product', $category_product)
             ->with('brand_product', $brand_product)
+            ->with('product', $product)
             ->with('cart', $cart); // Truyền biến cart sang view
     }
     public function logout_checkout()
@@ -82,5 +83,75 @@ class CheckoutController extends Controller
             return Redirect::to('/login-checkout')->with('message', 'Tài khoản hoặc mật khẩu không đúng');
         }
     }
-    
+    public function order_place(Request $request)
+    {
+        // Lưu thông tin thanh toán
+        $data = array();
+        $data['payment_method'] = $request->payment_option;
+        $data['payment_status'] = 'Đang chờ xử lý';
+        $payment_id = DB::table('tbl_payment')->insertGetId($data);
+
+        // Lưu đơn hàng
+        $order_data = array();
+        $order_data['customer_id'] = Session::get('customer_id');
+        $order_data['shipping_id'] = Session::get('shipping_id');
+        $order_data['payment_id'] = $payment_id;
+        $order_data['order_total'] = Session::get('total'); // 💰 Tổng tiền
+        $order_data['order_status'] = 'Đang xử lý';
+        $order_id = DB::table('tbl_order')->insertGetId($order_data);
+
+        // Lưu chi tiết đơn hàng (giả sử có mảng $cart lưu trong Session)
+        $cart = Session::get('cart');
+        // Lặp qua từng sản phẩm trong giỏ hàng và lưu vào tbl_order_details
+        foreach ($cart as $item) {
+            $order_detail = array();
+            $order_detail['order_id'] = $order_id;
+            $order_detail['product_id'] = $item['product_id'];
+            $order_detail['product_name'] = $item['product_name'];
+            $order_detail['product_price'] = $item['product_price'];
+            $order_detail['product_sales_quantity'] = $item['quantity'];
+            DB::table('tbl_order_details')->insert($order_detail);
+        }
+        if ($data["payment_method"] == 1) {
+            // Thanh toán bằng thẻ ATM nội địa
+            // return view('pages.checkout.handcash');
+            echo '<h2 style="color: red; text-align: center;">Thanh toán bằng thẻ ATM nội địa</h2>';
+        } elseif ($data["payment_method"] == 2) {
+            $category_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
+            $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
+            // Thanh toán bằng tieenf mặt
+            return view('pages.checkout.handcash')
+                ->with('category_product', $category_product)
+                ->with('brand_product', $brand_product);
+            // Xóa giỏ hàng sau khi đặt hàng
+            Session::forget('cart');
+            // echo '<h2 style="color: red; text-align: center;">Thanh toán bằng tiền mặt</h2>';
+        } elseif ($data["payment_method"] == 3) {
+            // Thanh toán bằng tiền Chuyển Khoản ngan hàng
+            // 
+            echo '<h2 style="color: red; text-align: center;">Thanh toán bằng chuyen khoan ngan hang</h2>';
+        }
+        // Xóa giỏ hàng sau khi đặt hàng
+        Session::forget('cart');
+        Session::forget('total');
+
+        // return redirect('/payment')->with('message', 'Đặt hàng thành công!');
+    }
+    public function manage_order()
+    {
+        $lietke_donhang = DB::table('tbl_order')
+            ->join('tbl_customer', 'tbl_order.customer_id', '=', 'tbl_customer.customer_id')
+            ->select('tbl_order.*', 'tbl_customer.customer_name', 'tbl_customer.customer_email')
+            ->orderBy('tbl_order.order_id', 'desc')
+            ->get();
+
+        return view('admin.manage_order')
+            ->with('lietke_donhang', $lietke_donhang);
+    }
+    public function update_order($order_id, Request $request){
+
+    }
+    public function delete_order($order_id, Request $request){
+
+    }
 }

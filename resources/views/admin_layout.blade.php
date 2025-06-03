@@ -104,7 +104,15 @@ Giao diện tương thích Smartphone, thiết kế web miễn phí cho Nokia, S
                                 <span>Tổng quan</span>
                             </a>
                         </li>
-
+                        <li class="sub-menu">
+                            <a href="javascript:;">
+                                <i class="fa fa-box-open"></i>
+                                <span>Đơn hàng</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a href="{{ route("admin.manage_order") }}">Quản lý đơn hàng</a></li>                           
+                            </ul>
+                        </li>
                         <li class="sub-menu">
                             <a href="javascript:;">
                                 <i class="fa fa-th-list"></i>

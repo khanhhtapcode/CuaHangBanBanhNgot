@@ -10,8 +10,18 @@ use Illuminate\Support\Facades\Session;
 session_start();
 class ProductController extends Controller
 {
+    public function Authlogin()
+    {
+        $admin_id = Session::get('admin_id');
+        if ($admin_id) {
+            return Redirect::to('dashboard');
+        } else {
+            return Redirect::to('admin')->send();
+        }
+    }
     public function them_sanpham()
     {
+        $this->Authlogin(); // Kiểm tra đăng nhập
         $category_product = DB::table('tbl_category_product')->orderby('category_id', 'desc')->get();
         $brand_product = DB::table('tbl_brand')->orderby('brand_id', 'desc')->get();
         return view('admin.add_product')->with('category_product', $category_product)->with('brand_product', $brand_product);
@@ -19,6 +29,7 @@ class ProductController extends Controller
     // hàm lấy danh sách danh mục sản phẩm
     public function lietke_sanpham()
     {
+        $this->Authlogin(); // Kiểm tra đăng nhập
         $lietke_sanpham = DB::table('tbl_product')
             ->join('tbl_category_product', 'tbl_category_product.category_id', '=', 'tbl_product.category_id')
             ->join('tbl_brand', 'tbl_brand.brand_id', '=', 'tbl_product.brand_id')

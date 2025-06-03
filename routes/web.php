@@ -107,12 +107,19 @@ Route::post('/update-cart', [CartController::class, 'update_cart'])->name('updat
 Route::get('/login-checkout', [CheckoutController::class, 'login_checkout'])->name('admin.login_checkout');
 Route::get('/logout-checkout', [CheckoutController::class, 'logout_checkout'])->name('admin.logout_checkout');
 Route::get('/payment', [CheckoutController::class, 'payment'])->name('admin.payment');
+Route::post('/order-place', [CheckoutController::class, 'order_place'])->name('admin.order_place');
 // Xử lý thêm khách hàng
 Route::post('/signup-customer', [CheckoutController::class, 'signup_customer'])->name('admin.signup_customer');
 // Xử lý đăng nhập khách hàng
 Route::post('/login-customer', [CheckoutController::class, 'login_customer'])->name('admin.login_customer');
 Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('admin.checkout');
 Route::post('/save-shipping', [CheckoutController::class, 'save_shipping'])->name('admin.save_shipping');
+
+
+//Other routes
+Route::get('/quan_ly_dat_hang', [CheckoutController::class, 'manage_order'])->name('admin.manage_order');
+Route::post('/capnhat-donhang/{order_id}', [CheckoutController::class, 'update_order'])->name('admin.update_order');
+Route::get('/xoa_donhang/{order_id}', [CheckoutController::class, 'delete_order'])->name('admin.delete_order');
 
 
 

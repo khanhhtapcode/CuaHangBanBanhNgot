@@ -179,7 +179,10 @@
                     if ($customer_id != NULL) {
 
                     ?>
-                        <a class="btn btn-default check_out " href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
+                    <?php
+                    Session::put('total', $total);
+                    ?>
+                        <a class="btn btn-default check_out" href="{{ URL::to('/checkout') }}"><i class="fa fa-crosshairs"></i> Thanh toán</a>
                     <?php
                     } else {
                     ?>
